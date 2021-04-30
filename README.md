@@ -1,6 +1,15 @@
 # Om-Nom-Movies
 
 A view that searches [https://www.omdbapi.com/] to render a list of movies based on user input query. User can save their own movies in a nomination[a nom] list. Hence, om-nom-movies; for all the uwus and owos. 
+
+Steps to run project locally: 
+
+- API Access
+[0] Generate an API key: [https://www.omdbapi.com/apikey.aspx?__EVENTTARGET=freeAcct]
+[1] Make a .env file and save (your own) API key under variable name: 'API_KEY'
+- Dependencies
+[2] Install module dependencies: npm install
+[3] Serve the App: npm start
 ## Built with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

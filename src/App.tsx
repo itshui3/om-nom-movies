@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { connectOMDb } from './api/connectMovies';
+
 function App() {
+
+  useEffect(() => {
+    connectOMDb();
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
