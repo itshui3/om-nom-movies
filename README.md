@@ -1,6 +1,6 @@
 # Om-Nom-Movies
 
-A view that searches [https://www.omdbapi.com/] to render a list of movies. User can save their own movies in a nomination[a nom] list. Hence, om-nom-movies; for all the uwus and owos. 
+A view that searches [https://www.omdbapi.com/] to render a list of movies based on user input query. User can save their own movies in a nomination[a nom] list. Hence, om-nom-movies; for all the uwus and owos. 
 ## Built with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
