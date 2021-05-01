@@ -6,16 +6,23 @@ import MovieCardMini from './MovieCardMini';
 import { Result } from '../../interfaces/Result';
 
 interface Props {
-    movies: Result[]
+    movies: Result[],
+    error: boolean
 }
 
 function ResultView(props: Props) {
-    const { movies } = props;
+    const { movies, error } = props;
 
 return (
 <>
 {
+!error
+?
 movies.map(m => (<MovieCardMini movieData={m} />))
+:
+(<div>
+{movies[0].Title}
+</div>)
 }
 </>
 )
