@@ -4,8 +4,16 @@ import input_styles from './SearchStyles/SearchInput.module.css';
 
 import { searchMovies } from '../../api/searchOptions';
 
+import { Result } from '../../interfaces/Result';
+
 interface Props {
     passResults: Function
+}
+
+interface OMDbResponse {
+    data: {
+        Search: Result[]
+    }
 }
 
 function SearchInput(props: Props) {
@@ -13,8 +21,18 @@ function SearchInput(props: Props) {
 
     const [searchTerm, setSearchTerm] = useState('');
 
-    const sendQuery = (input: string) => {
-        console.log(searchMovies(input));
+    const sendQuery = async (input: string) => {
+        let resp = await searchMovies(input);
+
+        if (resp?.Response) {
+            
+            if (resp?.Search?.length) {
+                console.log(resp.Search);
+                passResults(resp.Search);
+            }
+        } else {
+            console.log('response failed!');
+        }
     }
 
 return (
