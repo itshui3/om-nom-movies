@@ -1,6 +1,8 @@
 
 import React from 'react'
 
+import SearchSVG from '../../svg/SearchSVG';
+
 import miniCardStyle from '../Result/ResultStyles/MovieCardMini.module.css';
 
 import { Result } from '../../interfaces/Result'
@@ -20,7 +22,10 @@ return (
     <p className={miniCardStyle.movie_title}>
     {movieData.Title} ({movieData.Year})
     </p>
-    
+    <div className={miniCardStyle.checkbox_cont}>
+    <SearchSVG />
+    <p className={miniCardStyle.nomText}>Nom!</p>
+    </div>
 </div>
 </>
 )

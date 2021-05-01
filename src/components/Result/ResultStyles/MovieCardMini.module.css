@@ -8,11 +8,42 @@
     margin: 2px;
 }
 
+@media(max-width: 600px) {
+    .card_cont {
+        width: 420px;
+    }
+}
+
+@media(min-width: 600px) {
+    .card_cont {
+        width: 70%;
+    }
+}
+
 .movie_img {
     height: 43px;
     width: 32px;
 }
 
 .movie_title {
-    
+    font-size: .9rem;
+}
+
+.checkbox_cont {
+    flex-grow: 100;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    user-select: none;
+    cursor: pointer;
+
+    height: 100%;
+}
+
+.nomText {
+    margin: 5px;
+    height: 65%;
+    font-size: .5rem;
 }

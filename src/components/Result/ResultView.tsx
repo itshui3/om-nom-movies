@@ -20,7 +20,12 @@ return (
 ?
 movies.map(m => (<MovieCardMini movieData={m} />))
 :
-(<div>
+(<div
+style={{
+    fontSize: '.9rem',
+    margin: '5px'
+}}
+>
 {movies[0].Title}
 </div>)
 }

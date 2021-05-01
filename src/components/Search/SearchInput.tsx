@@ -18,11 +18,11 @@ function SearchInput(props: Props) {
 
     const sendQuery = async (input: string) => {
         let resp = await searchMovies(input);
-        console.log(resp);
+
         if (resp?.Response === "True") {
             passResults(resp?.Search);
         } else {
-            passError(resp.Error)
+            passError(resp.Error);
         }
     }
 
