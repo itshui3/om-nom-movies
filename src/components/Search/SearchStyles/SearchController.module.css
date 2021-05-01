@@ -1,0 +1,8 @@
+.search_cont {
+    border: 1px solid black;
+
+    display: flex;
+    align-items: center;
+
+    height: 45px;
+}

@@ -6,7 +6,7 @@ Steps to run project locally:
 
 - API Access
 [0] Generate an API key: [https://www.omdbapi.com/apikey.aspx?__EVENTTARGET=freeAcct]
-[1] Make a .env file and save (your own) API key under variable name: 'API_KEY'
+[1] Make a .env file and save (your own) API key under variable name: 'REACT_APP_API_KEY'
 - Dependencies
 [2] Install module dependencies: npm install
 [3] Serve the App: npm start
