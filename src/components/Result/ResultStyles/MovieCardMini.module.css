@@ -1,0 +1,18 @@
+
+.card_cont {
+    display: flex;
+    height: 43px;
+
+    align-items: center;
+
+    margin: 2px;
+}
+
+.movie_img {
+    height: 43px;
+    width: 32px;
+}
+
+.movie_title {
+    
+}
