@@ -9,10 +9,9 @@ const key = process.env.REACT_APP_API_KEY as string;
 const omdb_URL = `https://www.omdbapi.com/?apikey=${key}&`;
 
 export const connectOMDb = (URI: string = '') => {
-    Axios.get(omdb_URL+URI)
+    return Axios.get(omdb_URL+URI)
         .then(res => {
-            console.log(res);
-            return res;
+            return res.data;
         })
         .catch(err => {
             console.log(err);

@@ -1,20 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 import SearchController from './components/Search/SearchController';
 
-import { connectOMDb } from './api/connectMovies';
-import { searchByTitle } from './api/searchByTitle';
+import { Result } from './interfaces/Result'
+
+let searchResultInit: Result[] = [];
 
 function App() {
 
-  // useEffect(() => {
-  //   searchByTitle('Fight');
-  // }, []);
+    const [searchResults, setSearchResults] = useState(searchResultInit);
+
+    useEffect(() => {
+        console.log(searchResults);
+    }, [searchResults]);
+
 return (
 <>
 <div className='App'>
-    <SearchController />
+    <SearchController passResults={(results: Result[]) => setSearchResults(results)} />
 </div>
 </>
 );
