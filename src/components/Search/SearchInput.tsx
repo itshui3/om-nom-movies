@@ -10,12 +10,6 @@ interface Props {
     passResults: Function
 }
 
-interface OMDbResponse {
-    data: {
-        Search: Result[]
-    }
-}
-
 function SearchInput(props: Props) {
     const { passResults } = props;
 
@@ -25,7 +19,7 @@ function SearchInput(props: Props) {
         let resp = await searchMovies(input);
 
         if (resp?.Response) {
-            
+
             if (resp?.Search?.length) {
                 console.log(resp.Search);
                 passResults(resp.Search);
