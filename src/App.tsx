@@ -1,16 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 import SearchController from './components/Search/SearchController';
 
-import { connectOMDb } from './api/connectMovies';
-import { searchByTitle } from './api/searchByTitle';
+interface Result {
+    "Title": string;
+    "Year": string;
+    "imdbID": string;
+    "Type": string;
+    "Poster": string;
+}
+
+let searchResultInit: Result[] = [];
 
 function App() {
 
-  // useEffect(() => {
-  //   searchByTitle('Fight');
-  // }, []);
+    const [searchResults, setSearchResults] = useState(searchResultInit);
+
 return (
 <>
 <div className='App'>

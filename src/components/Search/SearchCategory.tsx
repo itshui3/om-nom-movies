@@ -1,4 +1,8 @@
-import React, { useState, useEffect } from 'react'
+/*
+component deprecated
+*/
+
+import React, { useState, useEffect } from 'react';
 
 import cat_styles from './SearchStyles/SearchCategory.module.css';
 
@@ -18,7 +22,6 @@ function SearchCategory(props: Props) {
         setShowCats(!showCats);
     }
 
-
     const {} = props
 
 return (
@@ -33,11 +36,10 @@ return (
         <div className={cat_styles.category}
         onClick={() => selectCat('Title')}>Title</div>
         <div className={cat_styles.category}
-        onClick={() => selectCat('Episode')}>Episode</div>
+        onClick={() => selectCat('Title')}>Title</div>
         <div className={cat_styles.category}
-        onClick={() => selectCat('Actor')}>Actor</div>
-        <div className={cat_styles.category}
-        onClick={() => selectCat('Company')}>Company</div>
+        onClick={() => selectCat('Id')}>ID</div>
+
     </div>
 </div>
 </>

@@ -3,6 +3,22 @@
     height: 25px;
 }
 
+.sendBtn {
+    height: 25px;
+    padding: 0px 5px;
+
+    cursor: pointer;
+    user-select: none;
+}
+
+.sendBtn:hover {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.sendBtn:active {
+    color: black;
+}
+
 @media(max-width: 600px) {
     .input {
         width: 350px;
