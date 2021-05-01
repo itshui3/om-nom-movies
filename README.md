@@ -1,12 +1,24 @@
-# Getting Started with Create React App
+# Om-Nom-Movies
+
+A view that searches [https://www.omdbapi.com/] to render a list of movies based on user input query. User can save their own movies in a nomination[a nom] list. Hence, om-nom-movies; for all the uwus and owos. 
+
+Steps to run project locally: 
+
+- API Access
+[0] Generate an API key: [https://www.omdbapi.com/apikey.aspx?__EVENTTARGET=freeAcct]
+[1] Make a .env file and save (your own) API key under variable name: 'REACT_APP_API_KEY'
+- Dependencies
+[2] Install module dependencies: npm install
+[3] Serve the App: npm start
+## Built with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+#### `yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -14,12 +26,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `yarn test`
+#### `yarn test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+#### `yarn build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -29,7 +41,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+#### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
@@ -39,7 +51,7 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
