@@ -27,13 +27,10 @@ function App() {
     const [searchResults, setSearchResults] = useState(searchResultInit);
     const [responseFoo, setResponseFoo] = useState(false);
 
-    useEffect(() => {
-        console.log(searchResults);
-    }, [searchResults]);
-
 return (
 <>
 <div className='App'>
+
     <SearchController 
     passResults={(results: Result[]) => {
         setSearchResults(results);
