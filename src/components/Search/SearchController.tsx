@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import ctrl_styles from './SearchStyles/SearchController.module.css';
 

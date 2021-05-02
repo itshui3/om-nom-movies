@@ -1,9 +1,7 @@
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import BoxSVG from '../../svg/BoxSVG';
-import CheckSVG from '../../svg/CheckSVG';
-import CrossSVG from '../../svg/CrossSVG';
 
 import miniCardStyle from '../Result/ResultStyles/MovieCardMini.module.css';
 
@@ -11,21 +9,14 @@ import { Result } from '../../interfaces/Result';
 
 interface Props {
     movieData: Result,
-    nommed: Set<string>,
     children: JSX.Element,
     addOrRemove: Function
 }
 
 function MovieCardMini(props: Props) {
-    const { movieData, nommed, addOrRemove } = props;
+    const { movieData, addOrRemove } = props;
 
     const [nomText, setNomText] = useState('Nom!');
-    const [hasNom, setHasNom] = useState(false);
-
-    useEffect(() => {
-        // check id against set
-        setHasNom(nommed.has(movieData.imdbID));
-    }, [nommed]);
 
 return (
 <>

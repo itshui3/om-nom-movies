@@ -5,7 +5,6 @@ interface Props {
 }
 
 function CrossSVG(props: Props) {
-    const {  } = props;
 
 return (
 <>

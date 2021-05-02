@@ -6,8 +6,6 @@ import { searchMovies } from '../../api/searchOptions';
 
 import SearchSVG from '../../svg/SearchSVG';
 
-import { Result } from '../../interfaces/Result';
-
 interface Props {
     passResults: Function,
     passError: Function
