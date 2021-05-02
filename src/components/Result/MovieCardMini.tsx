@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 
 import BoxSVG from '../../svg/BoxSVG';
 import CheckSVG from '../../svg/CheckSVG';
+import CrossSVG from '../../svg/CrossSVG';
 
 import miniCardStyle from '../Result/ResultStyles/MovieCardMini.module.css';
 
@@ -36,7 +37,8 @@ return (
     onMouseLeave={() => setNomText('Nom!')}
     >
     <BoxSVG>
-        <CheckSVG hidden={hidden} />
+        <CrossSVG hidden={hidden} />
+        {/* <CheckSVG hidden={hidden} /> */}
     </BoxSVG>
     <p className={miniCardStyle.nomText}>{nomText}</p>
     </div>
