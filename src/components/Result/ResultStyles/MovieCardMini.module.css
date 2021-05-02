@@ -43,7 +43,17 @@
 }
 
 .nomText {
+    position: relative;
     margin: 5px;
     height: 65%;
     font-size: .5rem;
+}
+
+.nomText:hover {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.nomText:active {
+    top: 3px;
+    color: black;
 }

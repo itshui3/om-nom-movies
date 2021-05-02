@@ -1,9 +1,8 @@
-
 import React from 'react'
 
 interface Props {}
 
-function SearchSVG(props: Props) {
+function CrossSVG(props: Props) {
     const {} = props
 
 return (
@@ -13,4 +12,4 @@ return (
 )
 }
 
-export default SearchSVG
+export default CrossSVG
