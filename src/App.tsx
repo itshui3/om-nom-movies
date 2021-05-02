@@ -43,6 +43,7 @@ function App() {
     }, [nommed, nomList]);
 
     const addNom = (nom: Result) => {
+        console.log('called add Nom');
         if (nommed.has(nom.imdbID)) return;
         setNommed(produce(nommed, draft => {
             draft.add(nom.imdbID);
@@ -57,7 +58,7 @@ function App() {
     }
 
     const removeNom = (id: string) => {
-        
+        console.log('called remove Nom');
         setNommed(produce(nommed, draft => {
             draft.delete(id);
             return draft;
@@ -91,6 +92,7 @@ return (
                 error={responseFoo} 
         
                 addNom={addNom}
+                removeNom={removeNom}
                 nommed={nommed}
                 />)
         } />
@@ -101,6 +103,7 @@ return (
                 error={false} 
         
                 addNom={addNom}
+                removeNom={removeNom}
                 nommed={nommed}
                 />)
         } />

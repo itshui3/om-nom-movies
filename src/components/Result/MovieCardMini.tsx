@@ -11,13 +11,13 @@ import { Result } from '../../interfaces/Result';
 
 interface Props {
     movieData: Result,
-    addNom: Function,
     nommed: Set<string>,
-    children: JSX.Element
+    children: JSX.Element,
+    addOrRemove: Function
 }
 
 function MovieCardMini(props: Props) {
-    const { movieData, addNom, nommed } = props;
+    const { movieData, nommed, addOrRemove } = props;
 
     const [nomText, setNomText] = useState('Nom!');
     const [hasNom, setHasNom] = useState(false);
@@ -40,7 +40,7 @@ return (
     onMouseUp={() => setNomText('Nom!')}
     onMouseLeave={() => setNomText('Nom!')}
 
-    onClick={() => addNom(movieData)}
+    onClick={() => addOrRemove()}
     >
     <BoxSVG>
     {
