@@ -10,18 +10,21 @@ import miniCardStyle from '../Result/ResultStyles/MovieCardMini.module.css';
 import { Result } from '../../interfaces/Result';
 
 interface Props {
-    movieData: Result
+    movieData: Result,
+    addNom: Function,
+    nommed: Set<string>
 }
 
 function MovieCardMini(props: Props) {
-    const { movieData } = props;
+    const { movieData, addNom, nommed } = props;
 
-    const [hidden, setHidden] = useState(false);
     const [nomText, setNomText] = useState('Nom!');
+    const [hasNom, setHasNom] = useState(false);
 
     useEffect(() => {
         // check id against set
-    }, [movieData.imdbID])
+        setHasNom(nommed.has(movieData.imdbID));
+    }, [nommed]);
 
 return (
 <>
@@ -35,10 +38,12 @@ return (
     onMouseDown={() => setNomText('owo;')}
     onMouseUp={() => setNomText('Nom!')}
     onMouseLeave={() => setNomText('Nom!')}
+
+    onClick={() => addNom(movieData)}
     >
     <BoxSVG>
-        <CrossSVG hidden={hidden} />
-        {/* <CheckSVG hidden={hidden} /> */}
+        {/* <CrossSVG hidden={hidden} /> */}
+        <CheckSVG hasNom={hasNom} />
     </BoxSVG>
     <p className={miniCardStyle.nomText}>{nomText}</p>
     </div>
