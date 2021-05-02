@@ -11,18 +11,20 @@ import { Result } from '../../interfaces/Result';
 
 interface Props {
     movieData: Result,
-    addNom: Function
+    addNom: Function,
+    nommed: Set<string>
 }
 
 function MovieCardMini(props: Props) {
-    const { movieData, addNom } = props;
+    const { movieData, addNom, nommed } = props;
 
-    const [hidden, setHidden] = useState(false);
     const [nomText, setNomText] = useState('Nom!');
+    const [hasNom, setHasNom] = useState(false);
 
     useEffect(() => {
         // check id against set
-    }, [movieData.imdbID]);
+        if (nommed.has(movieData.imdbID)) setHasNom(true);
+    }, [movieData.imdbID, nommed]);
 
 return (
 <>
@@ -41,7 +43,7 @@ return (
     >
     <BoxSVG>
         {/* <CrossSVG hidden={hidden} /> */}
-        <CheckSVG hidden={hidden} />
+        <CheckSVG hasNom={hasNom} />
     </BoxSVG>
     <p className={miniCardStyle.nomText}>{nomText}</p>
     </div>

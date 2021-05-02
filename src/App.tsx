@@ -84,6 +84,7 @@ return (
     error={responseFoo} 
 
     addNom={addNom} 
+    nommed={nommed}
     />
 </div>
 </>

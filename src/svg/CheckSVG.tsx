@@ -2,17 +2,17 @@
 import React from 'react'
 
 interface Props {
-    hidden: boolean;
+    hasNom: boolean;
 }
 
 function CheckSVG(props: Props) {
-    const { hidden } = props;
+    const { hasNom } = props;
 
 return (
 <>
     <svg height="12" width="12"
     style={
-        {zIndex: 1, display: hidden? 'hidden': 'block', position: 'absolute'}
+        {zIndex: 1, display: hasNom? 'hidden': 'block', position: 'absolute'}
     }
     >
     <line x1="0" y1="6" x2="6" y2="12"

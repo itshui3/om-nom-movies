@@ -8,11 +8,12 @@ import { Result } from '../../interfaces/Result';
 interface Props {
     movies: Result[],
     error: boolean,
-    addNom: Function
+    addNom: Function,
+    nommed: Set<string>
 }
 
 function ResultView(props: Props) {
-    const { movies, error, addNom } = props;
+    const { movies, error, addNom, nommed } = props;
 
 return (
 <>
@@ -20,7 +21,7 @@ return (
 !error
 ?
 movies.map(m => (
-<MovieCardMini movieData={m} addNom={addNom} />
+<MovieCardMini movieData={m} addNom={addNom} nommed={nommed} />
 ))
 :
 (<div
