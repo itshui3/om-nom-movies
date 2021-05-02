@@ -4,6 +4,8 @@ import input_styles from './SearchStyles/SearchInput.module.css';
 
 import { searchMovies } from '../../api/searchOptions';
 
+import SearchSVG from '../../svg/SearchSVG';
+
 import { Result } from '../../interfaces/Result';
 
 interface Props {
@@ -28,6 +30,7 @@ function SearchInput(props: Props) {
 
 return (
 <>
+
 <input
 className={input_styles.input}
 placeholder='Search Om-Nom-DB'
@@ -38,7 +41,7 @@ onChange={(ev) => setSearchTerm(ev.target.value)}
 className={input_styles.sendBtn}
 onClick={() => sendQuery(searchTerm)}
 >Send</div>
-
+<SearchSVG />
 </> 
 )
 }
