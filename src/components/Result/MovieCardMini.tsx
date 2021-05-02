@@ -12,7 +12,8 @@ import { Result } from '../../interfaces/Result';
 interface Props {
     movieData: Result,
     addNom: Function,
-    nommed: Set<string>
+    nommed: Set<string>,
+    children: JSX.Element
 }
 
 function MovieCardMini(props: Props) {
@@ -42,8 +43,9 @@ return (
     onClick={() => addNom(movieData)}
     >
     <BoxSVG>
-        {/* <CrossSVG hidden={hidden} /> */}
-        <CheckSVG hasNom={hasNom} />
+    {
+    props.children
+    }
     </BoxSVG>
     <p className={miniCardStyle.nomText}>{nomText}</p>
     </div>

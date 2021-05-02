@@ -4,7 +4,7 @@ import produce from 'immer';
 import React, { useEffect, useState } from 'react';
 import './App.css';
 
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Link } from 'react-router-dom';
 
 import SearchController from './components/Search/SearchController';
 import ResultView from './components/Result/ResultView';
@@ -70,6 +70,7 @@ function App() {
 
 return (
 <>
+<Redirect to='/search' />
 <div className='App'>
 
     <SearchController 
@@ -83,13 +84,33 @@ return (
     }}
     />
     {/* depending on route, render with check / cross children */}
-    <ResultView 
-    movies={searchResults} 
-    error={responseFoo} 
+    <div className='body'>
+        <Route path='/search' render={
+            () => (<ResultView 
+                movies={searchResults} 
+                error={responseFoo} 
+        
+                addNom={addNom}
+                nommed={nommed}
+                />)
+        } />
 
-    addNom={addNom} 
-    nommed={nommed}
-    />
+        <Route path='/noms' render={
+            () => (<ResultView 
+                movies={nomList} 
+                error={false} 
+        
+                addNom={addNom}
+                nommed={nommed}
+                />)
+        } />
+
+        <div>
+            <Link to='/search'>Search</Link>
+            <Link to='/noms'>Noms</Link>
+        </div>
+
+    </div>
 </div>
 </>
 );

@@ -1,17 +1,15 @@
 import React from 'react'
 
 interface Props {
-    hidden: boolean;
 }
 
 function CrossSVG(props: Props) {
-    const { hidden } = props;
 
 return (
 <>
     <svg height="12" width="12"
     style={
-        {zIndex: 1, display: hidden? 'hidden': 'block', position: 'absolute'}
+        {zIndex: 1, display: 'block', position: 'absolute'}
     }
     >
     <line x1="0" y1="0" x2="12" y2="12"
