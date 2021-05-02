@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Route } from 'react-router-dom';
 
 import MovieCardMini from './MovieCardMini';
@@ -31,7 +31,6 @@ if(!error) {
         <MovieCardMini 
         key={id} 
         movieData={m} 
-        nommed={nommed}
         addOrRemove={() => addNom(m)}>
             <CheckSVG hasNom={nommed.has(m.imdbID)} />
         </MovieCardMini>));
@@ -45,7 +44,6 @@ render={() => movies.map((m, id) => (
 <MovieCardMini 
 key={id} 
 movieData={m} 
-nommed={nommed}
 addOrRemove={() => removeNom(m.imdbID)}>
     <CrossSVG />
 </MovieCardMini>
