@@ -1,7 +1,11 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { Route } from 'react-router-dom';
 
 import MovieCardMini from './MovieCardMini';
+
+import CheckSVG from '../../svg/CheckSVG';
+import CrossSVG from '../../svg/CrossSVG';
 
 import { Result } from '../../interfaces/Result';
 
@@ -17,22 +21,35 @@ function ResultView(props: Props) {
 
 return (
 <>
-{
-!error
-?
-movies.map((m, id) => (
-<MovieCardMini key={id} movieData={m} addNom={addNom} nommed={nommed} />
-))
-:
-(<div
-style={{
-    fontSize: '.9rem',
-    margin: '5px'
-}}
->
-{movies[0].Title}
-</div>)
+<div style={{display: 'flex', flexDirection: 'column'}}>
+<Route path='/search' 
+render={() => {
+        if(!error) {
+            return movies.map((m, id) => (
+                <MovieCardMini 
+                key={id} 
+                movieData={m} 
+                addNom={addNom} 
+                nommed={nommed}>
+                    <CheckSVG hasNom={nommed.has(m.imdbID)} />
+                </MovieCardMini>));
+        } else return movies[0].Title;
+    }
 }
+/>
+
+<Route path='/noms'
+render={() => movies.map((m, id) => (
+    <MovieCardMini 
+    key={id} 
+    movieData={m} 
+    addNom={addNom} 
+    nommed={nommed}>
+        <CrossSVG />
+    </MovieCardMini>))}
+/>
+
+</div>
 </>
 )
 }
