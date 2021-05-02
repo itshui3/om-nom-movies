@@ -1,7 +1,8 @@
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
-import SearchSVG from '../../svg/SearchSVG';
+import BoxSVG from '../../svg/BoxSVG';
+import CheckSVG from '../../svg/CheckSVG';
 
 import miniCardStyle from '../Result/ResultStyles/MovieCardMini.module.css';
 
@@ -14,6 +15,12 @@ interface Props {
 function MovieCardMini(props: Props) {
     const { movieData } = props;
 
+    const [hidden, setHidden] = useState(false);
+
+    useEffect(() => {
+        // check id against set
+    }, [movieData.imdbID])
+
 return (
 <>
 <div className={miniCardStyle.card_cont}>
@@ -23,7 +30,9 @@ return (
     {movieData.Title} ({movieData.Year})
     </p>
     <div className={miniCardStyle.checkbox_cont}>
-    <SearchSVG />
+    <BoxSVG>
+        <CheckSVG hidden={hidden} />
+    </BoxSVG>
     <p className={miniCardStyle.nomText}>Nom!</p>
     </div>
 </div>

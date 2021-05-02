@@ -22,8 +22,6 @@ function SearchCategory(props: Props) {
         setShowCats(!showCats);
     }
 
-    const {} = props
-
 return (
 <>
 <div className={cat_styles.cat_cont}>

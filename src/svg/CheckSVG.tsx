@@ -1,0 +1,29 @@
+
+import React from 'react'
+
+interface Props {
+    hidden: boolean;
+}
+
+function CheckSVG(props: Props) {
+    const { hidden } = props;
+
+return (
+<>
+    <svg height="12" width="12"
+    style={
+        {zIndex: 1, display: hidden? 'hidden': 'block', position: 'absolute'}
+    }
+    >
+    <line x1="0" y1="6" x2="6" y2="12"
+    stroke="rgba(0, 0, 0, 0.55)"
+    strokeWidth="1" />
+    <line x1="6" y1="12" x2="12" y2="0"
+    stroke="rgba(0, 0, 0, 0.55)"
+    strokeWidth="1" />
+    </svg>
+</>
+)
+}
+
+export default CheckSVG
