@@ -38,8 +38,12 @@ function App() {
     const [nommed, setNommed] = useState(nommedCacheInit);
     const [nomList, setNomList] = useState(nomListInit);
 
-    const addNom = (nom: Result) => {
+    useEffect(() => {
+        console.log(nommed, nomList);
+    }, [nommed, nomList]);
 
+    const addNom = (nom: Result) => {
+        if (nommed.has(nom.imdbID)) return;
         setNommed(produce(nommed, draft => {
             draft.add(nom.imdbID);
             return draft;

@@ -1,9 +1,13 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { enableMapSet } from 'immer';
+
+enableMapSet();
 require('dotenv').config();
 
 console.log(process.env.REACT_APP_API_KEY);

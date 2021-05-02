@@ -20,8 +20,8 @@ return (
 {
 !error
 ?
-movies.map(m => (
-<MovieCardMini movieData={m} addNom={addNom} nommed={nommed} />
+movies.map((m, id) => (
+<MovieCardMini key={id} movieData={m} addNom={addNom} nommed={nommed} />
 ))
 :
 (<div

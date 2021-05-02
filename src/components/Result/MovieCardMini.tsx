@@ -23,8 +23,8 @@ function MovieCardMini(props: Props) {
 
     useEffect(() => {
         // check id against set
-        if (nommed.has(movieData.imdbID)) setHasNom(true);
-    }, [movieData.imdbID, nommed]);
+        setHasNom(nommed.has(movieData.imdbID));
+    }, [nommed]);
 
 return (
 <>
