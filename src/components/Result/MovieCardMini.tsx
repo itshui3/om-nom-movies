@@ -3,10 +3,11 @@ import React, { useState, useEffect } from 'react'
 
 import BoxSVG from '../../svg/BoxSVG';
 import CheckSVG from '../../svg/CheckSVG';
+import CrossSVG from '../../svg/CrossSVG';
 
 import miniCardStyle from '../Result/ResultStyles/MovieCardMini.module.css';
 
-import { Result } from '../../interfaces/Result'
+import { Result } from '../../interfaces/Result';
 
 interface Props {
     movieData: Result
@@ -16,6 +17,7 @@ function MovieCardMini(props: Props) {
     const { movieData } = props;
 
     const [hidden, setHidden] = useState(false);
+    const [nomText, setNomText] = useState('Nom!');
 
     useEffect(() => {
         // check id against set
@@ -29,15 +31,20 @@ return (
     <p className={miniCardStyle.movie_title}>
     {movieData.Title} ({movieData.Year})
     </p>
-    <div className={miniCardStyle.checkbox_cont}>
+    <div className={miniCardStyle.checkbox_cont}
+    onMouseDown={() => setNomText('owo;')}
+    onMouseUp={() => setNomText('Nom!')}
+    onMouseLeave={() => setNomText('Nom!')}
+    >
     <BoxSVG>
-        <CheckSVG hidden={hidden} />
+        <CrossSVG hidden={hidden} />
+        {/* <CheckSVG hidden={hidden} /> */}
     </BoxSVG>
-    <p className={miniCardStyle.nomText}>Nom!</p>
+    <p className={miniCardStyle.nomText}>{nomText}</p>
     </div>
 </div>
 </>
 )
 }
 
-export default MovieCardMini
+export default MovieCardMini;
