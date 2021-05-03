@@ -6,6 +6,16 @@
 .body {
   display: flex;
   justify-content: space-between;
+}
 
-  width: 70%;
+@media(max-width: 690px) {
+  .body {
+      width: 420px;
+  }
+}
+
+@media(min-width: 690px) {
+  .body {
+      width: 60%;
+  }
 }
