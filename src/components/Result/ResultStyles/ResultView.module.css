@@ -1,0 +1,12 @@
+
+.cont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+@media (min-width: 650px) {
+    .cont {
+        width: 500px;
+    }
+}

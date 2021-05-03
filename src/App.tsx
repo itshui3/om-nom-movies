@@ -1,15 +1,15 @@
 
 import produce from 'immer';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
-import { Route, Redirect, Link } from 'react-router-dom';
+import { Route, Redirect, useHistory } from 'react-router-dom';
 
 import SearchController from './components/Search/SearchController';
 import ResultView from './components/Result/ResultView';
 
-import { Result } from './interfaces/Result'
+import { Result } from './interfaces/Result';
 /*
     "Title": string;
     "Year": string;
@@ -23,14 +23,11 @@ let nomListInit: Result[] = [];
 let nommedCacheInit: Set<string> = new Set();
 
 const buildErrorResult = (error: string): Result[] => {
-    return [
-        {
-            "Title": error, "Year": '', "imdbID": '', "Type": '', "Poster": ''
-        }
-    ]
+    return [{ "Title": error, "Year": '', "imdbID": '', "Type": '', "Poster": '' }];
 }
 
 function App() {
+    const history = useHistory();
 
     const [searchResults, setSearchResults] = useState(searchResultInit);
     const [responseFoo, setResponseFoo] = useState(false);
@@ -38,12 +35,7 @@ function App() {
     const [nommed, setNommed] = useState(nommedCacheInit);
     const [nomList, setNomList] = useState(nomListInit);
 
-    useEffect(() => {
-        console.log(nommed, nomList);
-    }, [nommed, nomList]);
-
     const addNom = (nom: Result) => {
-        console.log('called add Nom');
         if (nommed.has(nom.imdbID)) return;
         setNommed(produce(nommed, draft => {
             draft.add(nom.imdbID);
@@ -58,7 +50,6 @@ function App() {
     }
 
     const removeNom = (id: string) => {
-        console.log('called remove Nom');
         setNommed(produce(nommed, draft => {
             draft.delete(id);
             return draft;
@@ -108,9 +99,11 @@ return (
                 />)
         } />
 
-        <div>
-            <Link to='/search'>Search</Link>
-            <Link to='/noms'>Noms</Link>
+        <div className='nav_cont'>
+            <div className='nav_item'
+            onClick={() => history.push('/search')}>Search</div>
+            <div className='nav_item'
+            onClick={() => history.push('/noms')}>Noms</div>
         </div>
 
     </div>

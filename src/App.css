@@ -19,3 +19,40 @@
       width: 60%;
   }
 }
+
+.nav_cont {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav_item {
+  position: relative;
+  font-size: .75rem;
+  margin: 5px 0;
+  padding: 3px;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+.nav_item:first-child {
+  border-top: 1px solid grey;
+  border-left: 1px solid grey;
+}
+
+.nav_item+.nav_item {
+  border-bottom: 1px solid grey;
+  border-right: 1px solid grey;
+}
+
+.nav_item+.nav_item:active {
+  left: 3px;
+  color: turquoise;
+  border-color: turquoise;
+}
+
+.nav_item:first-child:active {
+  right: 3px;
+  color: pink;
+  border-color: pink;
+}

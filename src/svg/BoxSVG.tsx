@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React from 'react';
 
 import boxStyles from './styles/BoxSVG.module.css';
 
@@ -13,7 +13,7 @@ return (
 <>
 <div className={boxStyles.box_cont}>
     {
-        props.children
+    props.children
     }
     <svg height="20" width="20">
     <line x1="0" y1="0" x2="20" y2="0"
