@@ -21,8 +21,11 @@ function MovieCardMini(props: Props) {
 return (
 <>
 <div className={miniCardStyle.card_cont}>
-    <img src={movieData.Poster} className={miniCardStyle.movie_img}
+
+    <img className={miniCardStyle.movie_img}
+    src={movieData.Poster} 
     alt={`The ${movieData.Type} ${movieData.Title}, produced in ${movieData.Year}`} />
+
     <p className={miniCardStyle.movie_title}>
     {movieData.Title} ({movieData.Year})
     </p>
@@ -31,8 +34,7 @@ return (
     onMouseUp={() => setNomText('Nom!')}
     onMouseLeave={() => setNomText('Nom!')}
 
-    onClick={() => addOrRemove()}
-    >
+    onClick={() => addOrRemove()}>
     <BoxSVG>
     {
     props.children

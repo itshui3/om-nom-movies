@@ -7,6 +7,8 @@ import MovieCardMini from './MovieCardMini';
 import CheckSVG from '../../svg/CheckSVG';
 import CrossSVG from '../../svg/CrossSVG';
 
+import resultStyles from './ResultStyles/ResultView.module.css';
+
 import { Result } from '../../interfaces/Result';
 
 interface Props {
@@ -22,7 +24,7 @@ function ResultView(props: Props) {
 
 return (
 <>
-<div style={{display: 'flex', flexDirection: 'column'}}>
+<div className={resultStyles.cont}>
 <Route path='/search' 
 render={() => {
 
@@ -55,4 +57,4 @@ addOrRemove={() => removeNom(m.imdbID)}>
 )
 }
 
-export default ResultView
+export default ResultView;

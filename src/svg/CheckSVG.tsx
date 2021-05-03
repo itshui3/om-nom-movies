@@ -7,12 +7,6 @@ interface Props {
 
 function CheckSVG(props: Props) {
     const { hasNom } = props;
-    // const [hidden, setHidden] = useState(hasNom);
-
-    // useEffect(() => {
-    //     console.log('in checkSVG', hasNom);
-    //     setHidden(hasNom);
-    // }, [hasNom]);
 
 return (
 <>
