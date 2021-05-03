@@ -38,12 +38,7 @@ function App() {
     const [nommed, setNommed] = useState(nommedCacheInit);
     const [nomList, setNomList] = useState(nomListInit);
 
-    useEffect(() => {
-        console.log(nommed, nomList);
-    }, [nommed, nomList]);
-
     const addNom = (nom: Result) => {
-        console.log('called add Nom');
         if (nommed.has(nom.imdbID)) return;
         setNommed(produce(nommed, draft => {
             draft.add(nom.imdbID);
@@ -58,7 +53,6 @@ function App() {
     }
 
     const removeNom = (id: string) => {
-        console.log('called remove Nom');
         setNommed(produce(nommed, draft => {
             draft.delete(id);
             return draft;
