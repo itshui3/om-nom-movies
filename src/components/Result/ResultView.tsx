@@ -39,6 +39,7 @@ render={() => {
 if(!error) {
     return movies.map((m, id) => (
         <MovieCardResult
+        key={id}
         id={id}
         movie={m}
         nommed={nommed}
@@ -53,11 +54,13 @@ if(!error) {
 render={() => movies.map((m, id) => (
 
 <MovieCardNoms 
+key={id}
 id={id}
 movie={m}
 removeNom={removeNom}
 startDrag={startDrag}
 dragCoords={dragCoords}
+dragId={dragId}
 />
 
 ))}/>

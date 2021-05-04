@@ -21,6 +21,7 @@ import { Result } from './interfaces/Result';
 let searchResultInit: Result[] = [];
 let nomListInit: Result[] = [];
 let nommedCacheInit: Set<string> = new Set();
+let dragCoordsInit: [number, number] = [NaN, NaN];
 
 const buildErrorResult = (error: string): Result[] => {
     return [{ "Title": error, "Year": '', "imdbID": '', "Type": '', "Poster": '' }];
@@ -36,7 +37,7 @@ function App() {
     const [nomList, setNomList] = useState(nomListInit);
 
     const [dragItem, setDragItem] = useState(NaN);
-    const [dragCoords, setDragCoords] = useState([NaN, NaN]);
+    const [dragCoords, setDragCoords] = useState(dragCoordsInit);
 
     const addNom = (nom: Result) => {
         if (nommed.has(nom.imdbID)) return;
@@ -67,26 +68,13 @@ function App() {
         setDragItem(id);
 
         const onMouseMove = (event: MouseEvent) => {
-            setDragCoords([event.clientX, event.clientY]);
-            // how do I grab dragelement in order to hide within react? 
-            // dragelement.hidden = true;
-            let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-            // dragelement.hidden = false;
-
-            let droppable = elemBelow?.closest('#dragItem');
-            // how do I get id from within droppable in order to perform swap? 
-            /* Swap Logic: 
-                given origin id & placement id that don't equal
-                injection swap origin towards placement id until it has swapped with placement, then setState new ordering into nomList
-            */
+            console.log(event.clientX, event.clientY);
         }
 
         document.addEventListener('mousemove', onMouseMove);
 
         const onMouseUp = () => {
             setDragItem(NaN);
-            setDragCoords([NaN, NaN]);
-
             document.removeEventListener('mousemove', onMouseMove);
             document.removeEventListener('mouseup', onMouseUp);
             
@@ -136,6 +124,9 @@ return (
                 removeNom={removeNom}
                 nommed={nommed}
                 startDrag={startDrag}
+
+                dragId={dragItem}
+                dragCoords={dragCoords}
                 />)
         } />
 

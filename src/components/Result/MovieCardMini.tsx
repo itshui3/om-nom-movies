@@ -22,7 +22,8 @@ function MovieCardMini(props: Props) {
 return (
 <>
 <div className={miniCardStyle.card_cont}
-onMouseDown={startDrag()}
+draggable={false}
+onMouseDown={() => startDrag()}
 >
 
     <img className={miniCardStyle.movie_img}
