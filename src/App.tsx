@@ -35,6 +35,9 @@ function App() {
     const [nommed, setNommed] = useState(nommedCacheInit);
     const [nomList, setNomList] = useState(nomListInit);
 
+    const [dragItem, setDragItem] = useState(NaN);
+    const [dragCoords, setDragCoords] = useState([NaN, NaN]);
+
     const addNom = (nom: Result) => {
         if (nommed.has(nom.imdbID)) return;
         setNommed(produce(nommed, draft => {
@@ -58,6 +61,38 @@ function App() {
         setNomList(produce(nomList, draft => {
             return draft.filter((nom) => nom.imdbID !== id);
         }));
+    }
+
+    const startDrag = (id: number) => {
+        setDragItem(id);
+
+        const onMouseMove = (event: MouseEvent) => {
+            setDragCoords([event.clientX, event.clientY]);
+            // how do I grab dragelement in order to hide within react? 
+            // dragelement.hidden = true;
+            let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+            // dragelement.hidden = false;
+
+            let droppable = elemBelow?.closest('#dragItem');
+            // how do I get id from within droppable in order to perform swap? 
+            /* Swap Logic: 
+                given origin id & placement id that don't equal
+                injection swap origin towards placement id until it has swapped with placement, then setState new ordering into nomList
+            */
+        }
+
+        document.addEventListener('mousemove', onMouseMove);
+
+        const onMouseUp = () => {
+            setDragItem(NaN);
+            setDragCoords([NaN, NaN]);
+
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+            
+        }
+
+        document.addEventListener('mouseup', onMouseUp);
     }
 
 return (
@@ -85,6 +120,10 @@ return (
                 addNom={addNom}
                 removeNom={removeNom}
                 nommed={nommed}
+                startDrag={startDrag}
+
+                dragId={dragItem}
+                dragCoords={dragCoords}
                 />)
         } />
 
@@ -96,6 +135,7 @@ return (
                 addNom={addNom}
                 removeNom={removeNom}
                 nommed={nommed}
+                startDrag={startDrag}
                 />)
         } />
 
