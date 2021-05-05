@@ -59,7 +59,6 @@ id={id}
 movie={m}
 removeNom={removeNom}
 startDrag={startDrag}
-dragCoords={dragCoords}
 dragId={dragId}
 />
 

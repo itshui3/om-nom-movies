@@ -9,6 +9,9 @@ import { Route, Redirect, useHistory } from 'react-router-dom';
 import SearchController from './components/Search/SearchController';
 import ResultView from './components/Result/ResultView';
 
+import MovieCardMini from './components/Result/MovieCardMini';
+import CrossSVG from './svg/CrossSVG';
+
 import { Result } from './interfaces/Result';
 /*
     "Title": string;
@@ -68,13 +71,14 @@ function App() {
         setDragItem(id);
 
         const onMouseMove = (event: MouseEvent) => {
-            console.log(event.clientX, event.clientY);
+            setDragCoords([event.clientX, event.clientY]);
         }
 
         document.addEventListener('mousemove', onMouseMove);
 
         const onMouseUp = () => {
             setDragItem(NaN);
+            setDragCoords([NaN, NaN]);
             document.removeEventListener('mousemove', onMouseMove);
             document.removeEventListener('mouseup', onMouseUp);
             
@@ -129,6 +133,30 @@ return (
                 dragCoords={dragCoords}
                 />)
         } />
+
+        {
+
+        !isNaN(dragItem) && !isNaN(dragCoords[0])
+        ?
+        <div
+        style={{
+            position: 'absolute', zIndex: 2, 
+            left: `${!isNaN(dragCoords[0]) ? dragCoords[0] : '0'}px`,
+            top: `${!isNaN(dragCoords[1]) ? dragCoords[1] : '0'}px`
+        }}
+        id='draggedItem'>
+            <MovieCardMini 
+            key={dragItem} 
+            movieData={nomList[dragItem]} 
+            addOrRemove={() => removeNom(nomList[dragItem].imdbID)}
+            startDrag={() => startDrag(dragItem)}>
+                <CrossSVG />
+            </MovieCardMini>
+        </div>
+        :
+        null
+
+        }
 
         <div className='nav_cont'>
             <div className='nav_item'
