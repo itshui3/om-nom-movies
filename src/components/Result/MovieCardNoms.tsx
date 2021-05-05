@@ -26,7 +26,11 @@ if dragged {
 
 return (
 <>
-<div>
+<div
+style={{
+    visibility: dragId === id ? 'hidden' : 'visible'
+}}
+>
 <MovieCardMini 
 key={id} 
 movieData={movie} 

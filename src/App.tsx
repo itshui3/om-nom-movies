@@ -115,7 +115,6 @@ return (
                 startDrag={startDrag}
 
                 dragId={dragItem}
-                dragCoords={dragCoords}
                 />)
         } />
 
@@ -130,7 +129,6 @@ return (
                 startDrag={startDrag}
 
                 dragId={dragItem}
-                dragCoords={dragCoords}
                 />)
         } />
 
