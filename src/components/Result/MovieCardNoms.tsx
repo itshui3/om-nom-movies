@@ -18,15 +18,11 @@ function MovieCardNoms(props: Props) {
 
     const {movie, id, removeNom} = props;
     const {startDrag, dragId} = props;
-/*
-if dragged {
-    render twice, but also in a positioned div wrapper
-}
-*/
 
 return (
 <>
 <div
+id={'nom_'+id}
 style={{
     visibility: dragId === id ? 'hidden' : 'visible'
 }}
@@ -35,7 +31,7 @@ style={{
 key={id} 
 movieData={movie} 
 addOrRemove={() => removeNom(movie.imdbID)}
-startDrag={() => startDrag(id)}>
+startDrag={startDrag(id)}>
     <CrossSVG />
 </MovieCardMini>
 </div>
