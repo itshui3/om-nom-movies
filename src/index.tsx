@@ -12,8 +12,6 @@ import { enableMapSet } from 'immer';
 enableMapSet();
 require('dotenv').config();
 
-console.log(process.env.REACT_APP_API_KEY);
-
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

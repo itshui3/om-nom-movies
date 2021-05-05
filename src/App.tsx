@@ -1,7 +1,7 @@
 
 import produce from 'immer';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './App.css';
 
 import { Route, Redirect, useHistory } from 'react-router-dom';
@@ -42,6 +42,8 @@ function App() {
     const [dragItem, setDragItem] = useState(NaN);
     const [dragCoords, setDragCoords] = useState(dragCoordsInit);
 
+    const dragItemRef = useRef(null);
+
     const addNom = (nom: Result) => {
         if (nommed.has(nom.imdbID)) return;
         setNommed(produce(nommed, draft => {
@@ -67,16 +69,18 @@ function App() {
         }));
     }
 
-    const startDrag = (id: number) => {
+    const startDrag = (id: number) => (shift: [number, number]) => {
         setDragItem(id);
+        console.log('shift', shift);
 
         const onMouseMove = (event: MouseEvent) => {
-            setDragCoords([event.clientX, event.clientY]);
+            setDragCoords([event.clientX - shift[0], event.clientY - shift[1]]);
         }
 
         document.addEventListener('mousemove', onMouseMove);
 
         const onMouseUp = () => {
+            console.log(dragItemRef.current);
             setDragItem(NaN);
             setDragCoords([NaN, NaN]);
             document.removeEventListener('mousemove', onMouseMove);
@@ -137,10 +141,11 @@ return (
         !isNaN(dragItem) && !isNaN(dragCoords[0])
         ?
         <div
+        ref={dragItemRef}
         style={{
             position: 'absolute', zIndex: 2, 
-            left: `${!isNaN(dragCoords[0]) ? dragCoords[0] : '0'}px`,
-            top: `${!isNaN(dragCoords[1]) ? dragCoords[1] : '0'}px`
+            left: `${!isNaN(dragCoords[0]) ? dragCoords[0]-10 : '0'}px`,
+            top: `${!isNaN(dragCoords[1]) ? dragCoords[1]-10 : '0'}px`
         }}
         id='draggedItem'>
             <MovieCardMini 

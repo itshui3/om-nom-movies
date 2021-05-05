@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import BoxSVG from '../../svg/BoxSVG';
 
@@ -19,16 +19,36 @@ function MovieCardMini(props: Props) {
 
     const [nomText, setNomText] = useState('Nom!');
 
+    const cardContRef = useRef<HTMLDivElement | null>(null);
+
+    const handleDrag = (ev: React.MouseEvent) => {
+        const clickX = ev.clientX;
+        const clickY = ev.clientY;
+
+        let boundX: number = 0;
+        let boundY: number = 0;
+
+        const node = cardContRef.current;
+        if (node) {
+            boundX = node.getBoundingClientRect().left;
+            boundY = node.getBoundingClientRect().top;
+        }
+
+        startDrag([clickX - boundX, clickY - boundY]);
+    }
+
 return (
 <>
 <div className={miniCardStyle.card_cont}
 draggable={false}
-onMouseDown={() => startDrag()}
+ref={cardContRef}
+onMouseDown={(ev) => handleDrag(ev)}
 >
 
     <img className={miniCardStyle.movie_img}
     src={movieData.Poster} 
-    alt={`The ${movieData.Type} ${movieData.Title}, produced in ${movieData.Year}`} />
+    alt={`The ${movieData.Type} ${movieData.Title}, produced in ${movieData.Year}`} 
+    draggable={false} />
 
     <p className={miniCardStyle.movie_title}>
     {movieData.Title} ({movieData.Year})
