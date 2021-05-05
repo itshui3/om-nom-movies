@@ -6,6 +6,9 @@
     align-items: center;
 
     margin: 2px;
+    user-select: none;
+    cursor: pointer;
+
 }
 
 .movie_img {
@@ -28,6 +31,7 @@
     cursor: pointer;
 
     height: 100%;
+    width: 400px;
 }
 
 .nomText {

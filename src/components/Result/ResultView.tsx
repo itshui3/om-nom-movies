@@ -2,10 +2,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import MovieCardMini from './MovieCardMini';
-
-import CheckSVG from '../../svg/CheckSVG';
-import CrossSVG from '../../svg/CrossSVG';
+import MovieCardResult from './MovieCardResult';
+import MovieCardNoms from './MovieCardNoms';
 
 import resultStyles from './ResultStyles/ResultView.module.css';
 
@@ -16,11 +14,16 @@ interface Props {
     error: boolean,
     addNom: Function,
     removeNom: Function,
-    nommed: Set<string>
+    nommed: Set<string>,
+    startDrag: Function,
+    dragId: number
 }
 
 function ResultView(props: Props) {
+    // general noms
     const { movies, error, addNom, removeNom, nommed } = props;
+    // drag api
+    const {startDrag, dragId} = props;
 
 return (
 <>
@@ -30,12 +33,14 @@ render={() => {
 
 if(!error) {
     return movies.map((m, id) => (
-        <MovieCardMini 
-        key={id} 
-        movieData={m} 
-        addOrRemove={() => addNom(m)}>
-            <CheckSVG hasNom={nommed.has(m.imdbID)} />
-        </MovieCardMini>));
+        <MovieCardResult
+        key={id}
+        id={id}
+        movie={m}
+        nommed={nommed}
+        addNom={addNom}
+        />
+    ));
 } else return movies[0].Title;
 
 }}/>
@@ -43,12 +48,14 @@ if(!error) {
 <Route path='/noms'
 render={() => movies.map((m, id) => (
 
-<MovieCardMini 
-key={id} 
-movieData={m} 
-addOrRemove={() => removeNom(m.imdbID)}>
-    <CrossSVG />
-</MovieCardMini>
+<MovieCardNoms 
+key={id}
+id={id}
+movie={m}
+removeNom={removeNom}
+startDrag={startDrag}
+dragId={dragId}
+/>
 
 ))}/>
 

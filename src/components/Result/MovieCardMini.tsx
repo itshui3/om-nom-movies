@@ -10,17 +10,21 @@ import { Result } from '../../interfaces/Result';
 interface Props {
     movieData: Result,
     children: JSX.Element,
-    addOrRemove: Function
+    addOrRemove: Function,
+    startDrag: Function
 }
 
 function MovieCardMini(props: Props) {
-    const { movieData, addOrRemove } = props;
+    const { movieData, addOrRemove, startDrag } = props;
 
     const [nomText, setNomText] = useState('Nom!');
 
 return (
 <>
-<div className={miniCardStyle.card_cont}>
+<div className={miniCardStyle.card_cont}
+draggable={false}
+onMouseDown={() => startDrag()}
+>
 
     <img className={miniCardStyle.movie_img}
     src={movieData.Poster} 

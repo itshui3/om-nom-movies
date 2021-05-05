@@ -9,6 +9,9 @@ import { Route, Redirect, useHistory } from 'react-router-dom';
 import SearchController from './components/Search/SearchController';
 import ResultView from './components/Result/ResultView';
 
+import MovieCardMini from './components/Result/MovieCardMini';
+import CrossSVG from './svg/CrossSVG';
+
 import { Result } from './interfaces/Result';
 /*
     "Title": string;
@@ -21,6 +24,7 @@ import { Result } from './interfaces/Result';
 let searchResultInit: Result[] = [];
 let nomListInit: Result[] = [];
 let nommedCacheInit: Set<string> = new Set();
+let dragCoordsInit: [number, number] = [NaN, NaN];
 
 const buildErrorResult = (error: string): Result[] => {
     return [{ "Title": error, "Year": '', "imdbID": '', "Type": '', "Poster": '' }];
@@ -34,6 +38,9 @@ function App() {
 
     const [nommed, setNommed] = useState(nommedCacheInit);
     const [nomList, setNomList] = useState(nomListInit);
+
+    const [dragItem, setDragItem] = useState(NaN);
+    const [dragCoords, setDragCoords] = useState(dragCoordsInit);
 
     const addNom = (nom: Result) => {
         if (nommed.has(nom.imdbID)) return;
@@ -58,6 +65,26 @@ function App() {
         setNomList(produce(nomList, draft => {
             return draft.filter((nom) => nom.imdbID !== id);
         }));
+    }
+
+    const startDrag = (id: number) => {
+        setDragItem(id);
+
+        const onMouseMove = (event: MouseEvent) => {
+            setDragCoords([event.clientX, event.clientY]);
+        }
+
+        document.addEventListener('mousemove', onMouseMove);
+
+        const onMouseUp = () => {
+            setDragItem(NaN);
+            setDragCoords([NaN, NaN]);
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+            
+        }
+
+        document.addEventListener('mouseup', onMouseUp);
     }
 
 return (
@@ -85,6 +112,9 @@ return (
                 addNom={addNom}
                 removeNom={removeNom}
                 nommed={nommed}
+                startDrag={startDrag}
+
+                dragId={dragItem}
                 />)
         } />
 
@@ -96,8 +126,35 @@ return (
                 addNom={addNom}
                 removeNom={removeNom}
                 nommed={nommed}
+                startDrag={startDrag}
+
+                dragId={dragItem}
                 />)
         } />
+
+        {
+
+        !isNaN(dragItem) && !isNaN(dragCoords[0])
+        ?
+        <div
+        style={{
+            position: 'absolute', zIndex: 2, 
+            left: `${!isNaN(dragCoords[0]) ? dragCoords[0] : '0'}px`,
+            top: `${!isNaN(dragCoords[1]) ? dragCoords[1] : '0'}px`
+        }}
+        id='draggedItem'>
+            <MovieCardMini 
+            key={dragItem} 
+            movieData={nomList[dragItem]} 
+            addOrRemove={() => removeNom(nomList[dragItem].imdbID)}
+            startDrag={() => startDrag(dragItem)}>
+                <CrossSVG />
+            </MovieCardMini>
+        </div>
+        :
+        null
+
+        }
 
         <div className='nav_cont'>
             <div className='nav_item'
