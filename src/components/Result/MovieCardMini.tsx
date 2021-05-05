@@ -6,6 +6,7 @@ import BoxSVG from '../../svg/BoxSVG';
 import miniCardStyle from '../Result/ResultStyles/MovieCardMini.module.css';
 
 import { Result } from '../../interfaces/Result';
+import { JsxEmit } from 'typescript';
 
 interface Props {
     movieData: Result,
@@ -29,6 +30,7 @@ function MovieCardMini(props: Props) {
         let boundY: number = 0;
 
         const node = cardContRef.current;
+        
         if (node) {
             boundX = node.getBoundingClientRect().left;
             boundY = node.getBoundingClientRect().top;

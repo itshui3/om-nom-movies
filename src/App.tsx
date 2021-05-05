@@ -42,7 +42,7 @@ function App() {
     const [dragItem, setDragItem] = useState(NaN);
     const [dragCoords, setDragCoords] = useState(dragCoordsInit);
 
-    const dragItemRef = useRef(null);
+    const dragItemRef = useRef<HTMLDivElement | null>(null);
 
     const addNom = (nom: Result) => {
         if (nommed.has(nom.imdbID)) return;
@@ -71,21 +71,32 @@ function App() {
 
     const startDrag = (id: number) => (shift: [number, number]) => {
         setDragItem(id);
-        console.log('shift', shift);
 
         const onMouseMove = (event: MouseEvent) => {
             setDragCoords([event.clientX - shift[0], event.clientY - shift[1]]);
+
+            const DOMdragItem = dragItemRef.current;
+
+            if (!DOMdragItem) return;
+
+            DOMdragItem.hidden = true;
+            let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+            DOMdragItem.hidden = false;
+
+            if (elemBelow?.id.split('_')[0] !== 'nom') return;
+
+            const swapId = +elemBelow?.id.split('_')[1];
+            if (swapId === id) return;
+            console.log(swapId);
         }
 
         document.addEventListener('mousemove', onMouseMove);
 
         const onMouseUp = () => {
-            console.log(dragItemRef.current);
             setDragItem(NaN);
             setDragCoords([NaN, NaN]);
             document.removeEventListener('mousemove', onMouseMove);
             document.removeEventListener('mouseup', onMouseUp);
-            
         }
 
         document.addEventListener('mouseup', onMouseUp);
