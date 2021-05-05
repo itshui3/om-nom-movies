@@ -46,10 +46,6 @@ function App() {
 
     const dragItemRef = useRef<HTMLDivElement | null>(null);
 
-    React.useEffect(() => {
-        console.log(dragItem);
-    }, [dragItem]);
-
     const addNom = (nom: Result) => {
         if (nommed.has(nom.imdbID)) return;
         setNommed(produce(nommed, draft => {

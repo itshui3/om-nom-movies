@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import { useHistory } from 'react-router-dom';
+
 import input_styles from './SearchStyles/SearchInput.module.css';
 
 import { searchMovies } from '../../api/searchOptions';
@@ -14,6 +16,8 @@ interface Props {
 function SearchInput(props: Props) {
     const { passResults, passError } = props;
 
+    const history = useHistory();
+
     const [searchTerm, setSearchTerm] = useState('');
 
     const sendQuery = async (input: string) => {
@@ -24,6 +28,11 @@ function SearchInput(props: Props) {
         } else {
             passError(resp.Error);
         }
+    }
+
+    const handleSearch = () => {
+        sendQuery(searchTerm);
+        history.push('/search');
     }
 
 return (
@@ -37,7 +46,7 @@ onChange={(ev) => setSearchTerm(ev.target.value)}
 />
 <div
 className={input_styles.sendBtn}
-onClick={() => sendQuery(searchTerm)}
+onClick={handleSearch}
 >Send</div>
 <SearchSVG />
 </> 
