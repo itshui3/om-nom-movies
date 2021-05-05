@@ -12,6 +12,8 @@ import ResultView from './components/Result/ResultView';
 import MovieCardMini from './components/Result/MovieCardMini';
 import CrossSVG from './svg/CrossSVG';
 
+import { performDrag } from './helpers/performDrag';
+
 import { Result } from './interfaces/Result';
 /*
     "Title": string;
@@ -43,6 +45,10 @@ function App() {
     const [dragCoords, setDragCoords] = useState(dragCoordsInit);
 
     const dragItemRef = useRef<HTMLDivElement | null>(null);
+
+    React.useEffect(() => {
+        console.log(dragItem);
+    }, [dragItem]);
 
     const addNom = (nom: Result) => {
         if (nommed.has(nom.imdbID)) return;
@@ -86,8 +92,13 @@ function App() {
             if (elemBelow?.id.split('_')[0] !== 'nom') return;
 
             const swapId = +elemBelow?.id.split('_')[1];
-            if (swapId === id) return;
-            console.log(swapId);
+            if (swapId === dragItem) return;
+            setDragItem((capturedDragId) => {
+                setNomList(performDrag(capturedDragId, swapId, nomList));
+                return swapId;
+            });
+            
+            
         }
 
         document.addEventListener('mousemove', onMouseMove);

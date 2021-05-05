@@ -1,6 +1,6 @@
 import produce from 'immer';
 
-import { Result } from '../../interfaces/Result';
+import { Result } from '../interfaces/Result';
 
 export const performDrag = (startId: number, endId: number, nomList: Result[]): Result[] => {
 /*
@@ -12,9 +12,9 @@ injection swap array from startId until swapped with endId
         let i = startId;
 
         while (i !== endId) {
-
+            console.log(startId, endId);
             let mod_i = startId > endId ? i-1 : i+1;
-
+            console.log(mod_i);
             [draft[i], draft[mod_i]] = [draft[mod_i], draft[i]]
 
             if (startId > endId) i--;
