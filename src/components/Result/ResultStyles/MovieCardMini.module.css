@@ -18,10 +18,16 @@
 
 .movie_title {
     font-size: .9rem;
+    width: 340px;
+}
+
+@media (min-width: 650px) {
+    .movie_title {
+        width: 400px;
+    }
 }
 
 .checkbox_cont {
-    flex-grow: 1;
 
     display: flex;
     justify-content: flex-end;
@@ -31,7 +37,7 @@
     cursor: pointer;
 
     height: 100%;
-    width: 400px;
+
 }
 
 .nomText {
