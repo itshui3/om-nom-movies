@@ -18,7 +18,6 @@ function MovieCardMini(props: Props) {
     const { movieData, addOrRemove, startDrag } = props;
 
     const [nomText, setNomText] = useState('Nom!');
-    const [lockDrag, setLockDrag] = useState(false);
 
     const cardContRef = useRef<HTMLDivElement | null>(null);
     const removerRef = useRef<HTMLDivElement | null>(null);
@@ -37,9 +36,9 @@ function MovieCardMini(props: Props) {
             boundY = node.getBoundingClientRect().top;
         }
 
-        if (!lockDrag) {
-            startDrag([clickX - boundX, clickY - boundY]);
-        }
+
+        startDrag([clickX - boundX, clickY - boundY]);
+
         
     }
 
