@@ -18,8 +18,10 @@ function MovieCardMini(props: Props) {
     const { movieData, addOrRemove, startDrag } = props;
 
     const [nomText, setNomText] = useState('Nom!');
+    const [lockDrag, setLockDrag] = useState(false);
 
     const cardContRef = useRef<HTMLDivElement | null>(null);
+    const removerRef = useRef<HTMLDivElement | null>(null);
 
     const handleDrag = (ev: React.MouseEvent) => {
         const clickX = ev.clientX;
@@ -35,7 +37,10 @@ function MovieCardMini(props: Props) {
             boundY = node.getBoundingClientRect().top;
         }
 
-        startDrag([clickX - boundX, clickY - boundY]);
+        if (!lockDrag) {
+            startDrag([clickX - boundX, clickY - boundY]);
+        }
+        
     }
 
 return (
@@ -54,8 +59,11 @@ onMouseDown={(ev) => handleDrag(ev)}
     <p className={miniCardStyle.movie_title}>
     {movieData.Title} ({movieData.Year})
     </p>
-    <div className={miniCardStyle.checkbox_cont}
-    onMouseDown={() => setNomText('owo;')}
+    <div className={miniCardStyle.checkbox_cont} ref={removerRef}
+    onMouseDown={(ev) => {
+        setNomText('owo;');
+        ev.stopPropagation();
+    }}
     onMouseUp={() => setNomText('Nom!')}
     onMouseLeave={() => setNomText('Nom!')}
 
