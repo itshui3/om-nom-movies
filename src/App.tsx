@@ -77,6 +77,8 @@ function App() {
 
     const startDrag = (id: number) => (shift: [number, number]) => {
         setDragItem(id);
+
+        // mouseMove event doesn't seem to reclose state vars, any incremental updates 
         const onMouseMove = (event: MouseEvent) => {
             setDragCoords([event.clientX - shift[0], event.clientY - shift[1]]);
 
