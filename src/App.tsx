@@ -46,6 +46,10 @@ function App() {
 
     const dragItemRef = useRef<HTMLDivElement | null>(null);
 
+    // React.useEffect(() => {
+    //     console.log('new drag item: ', dragItem);
+    // }, [dragItem]);
+
     const addNom = (nom: Result) => {
         if (nommed.has(nom.imdbID)) return;
         setNommed(produce(nommed, draft => {
@@ -87,15 +91,21 @@ function App() {
             if (elemBelow?.id.split('_')[0] !== 'nom') return;
 
             const swapId = +elemBelow?.id.split('_')[1];
+            setNomList((nomList) => {
 
-            if (swapId === dragItem) return;
-            setDragItem((capturedDragId) => {
-                if (isNaN(capturedDragId)) return capturedDragId;
+                return produce(nomList, draft => {
+                    setDragItem((capturedDragId) => {
+                        if (isNaN(capturedDragId)) return capturedDragId;
+                        if (swapId === capturedDragId) return capturedDragId;
+                        console.log('performDrag resp: ', performDrag(capturedDragId, swapId, nomList));
+                        setNomList(performDrag(capturedDragId, swapId, nomList));
+                        return swapId;
+         
+                    });
+                })
 
-                setNomList(performDrag(capturedDragId, swapId, nomList));
-                return swapId;
- 
-            });
+            })
+
  
         }
 
