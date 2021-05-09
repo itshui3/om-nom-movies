@@ -73,7 +73,6 @@ function App() {
 
     const startDrag = (id: number) => (shift: [number, number]) => {
         setDragItem(id);
-
         const onMouseMove = (event: MouseEvent) => {
             setDragCoords([event.clientX - shift[0], event.clientY - shift[1]]);
 
@@ -88,13 +87,16 @@ function App() {
             if (elemBelow?.id.split('_')[0] !== 'nom') return;
 
             const swapId = +elemBelow?.id.split('_')[1];
+
             if (swapId === dragItem) return;
             setDragItem((capturedDragId) => {
+                if (isNaN(capturedDragId)) return capturedDragId;
+
                 setNomList(performDrag(capturedDragId, swapId, nomList));
                 return swapId;
+ 
             });
-            
-            
+ 
         }
 
         document.addEventListener('mousemove', onMouseMove);

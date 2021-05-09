@@ -11,14 +11,16 @@ injection swap array from startId until swapped with endId
 
         let i = startId;
 
-        while (i !== endId) {
-            console.log(startId, endId);
-            let mod_i = startId > endId ? i-1 : i+1;
-            console.log(mod_i);
-            [draft[i], draft[mod_i]] = [draft[mod_i], draft[i]]
-
-            if (startId > endId) i--;
-            if (endId > startId) i++;
+        if (startId > endId) {
+            while (i > endId) {
+                [draft[i], draft[i-1]] = [draft[i-1], draft[i]];
+                i--;
+            }
+        } else {
+            while (i < endId) {
+                [draft[i], draft[i+1]] = [draft[i+1], draft[i]];
+                i++;
+            }
         }
 
         return draft;
