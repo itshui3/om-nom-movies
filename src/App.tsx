@@ -91,18 +91,20 @@ function App() {
             if (elemBelow?.id.split('_')[0] !== 'nom') return;
 
             const swapId = +elemBelow?.id.split('_')[1];
+
+            // state closed nomLists are out of date for some reason
             setNomList((nomList) => {
 
-                return produce(nomList, draft => {
-                    setDragItem((capturedDragId) => {
-                        if (isNaN(capturedDragId)) return capturedDragId;
-                        if (swapId === capturedDragId) return capturedDragId;
-                        console.log('performDrag resp: ', performDrag(capturedDragId, swapId, nomList));
-                        setNomList(performDrag(capturedDragId, swapId, nomList));
-                        return swapId;
-         
-                    });
-                })
+                setDragItem((capturedDragId) => {
+                    if (isNaN(capturedDragId)) return capturedDragId;
+                    if (swapId === capturedDragId) return capturedDragId;
+
+                    // occurs after this closure is returned
+                    setNomList(performDrag(capturedDragId, swapId, nomList));
+                    return swapId;
+                });
+
+                return nomList;
 
             })
 
