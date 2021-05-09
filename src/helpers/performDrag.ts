@@ -6,7 +6,7 @@ export const performDrag = (startId: number, endId: number, nomList: Result[]): 
 /*
 injection swap array from startId until swapped with endId
 */
-
+    console.log(`startId: ${startId}, endId: ${endId}`);
     return produce(nomList, draft => {
 
         let i = startId;
@@ -16,7 +16,7 @@ injection swap array from startId until swapped with endId
                 [draft[i], draft[i-1]] = [draft[i-1], draft[i]];
                 i--;
             }
-        } else {
+        } else if (startId < endId) {
             while (i < endId) {
                 [draft[i], draft[i+1]] = [draft[i+1], draft[i]];
                 i++;

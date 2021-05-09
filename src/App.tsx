@@ -46,6 +46,10 @@ function App() {
 
     const dragItemRef = useRef<HTMLDivElement | null>(null);
 
+    // React.useEffect(() => {
+    //     console.log('new drag item: ', dragItem);
+    // }, [dragItem]);
+
     const addNom = (nom: Result) => {
         if (nommed.has(nom.imdbID)) return;
         setNommed(produce(nommed, draft => {
@@ -88,14 +92,22 @@ function App() {
 
             const swapId = +elemBelow?.id.split('_')[1];
 
-            if (swapId === dragItem) return;
-            setDragItem((capturedDragId) => {
-                if (isNaN(capturedDragId)) return capturedDragId;
+            // state closed nomLists are out of date for some reason
+            setNomList((nomList) => {
 
-                setNomList(performDrag(capturedDragId, swapId, nomList));
-                return swapId;
- 
-            });
+                setDragItem((capturedDragId) => {
+                    if (isNaN(capturedDragId)) return capturedDragId;
+                    if (swapId === capturedDragId) return capturedDragId;
+
+                    // occurs after this closure is returned
+                    setNomList(performDrag(capturedDragId, swapId, nomList));
+                    return swapId;
+                });
+
+                return nomList;
+
+            })
+
  
         }
 
