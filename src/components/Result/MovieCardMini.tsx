@@ -36,10 +36,8 @@ function MovieCardMini(props: Props) {
             boundY = node.getBoundingClientRect().top;
         }
 
-
         startDrag([clickX - boundX, clickY - boundY]);
 
-        
     }
 
 return (
